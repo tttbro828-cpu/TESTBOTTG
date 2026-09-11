@@ -12152,6 +12152,10 @@ async def main():
     print("=" * 50)
 
     try:
+        # Удаляем webhook, чтобы работал polling
+        await bot.delete_webhook(drop_pending_updates=True)
+        print("✅ Webhook удалён, запускаем polling...")
+        
         await dp.start_polling(bot)
     except Exception as e:
         print(f"❌ Ошибка при запуске бота: {e}")
